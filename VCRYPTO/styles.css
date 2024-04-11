@@ -1,0 +1,169 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+  }
+  
+  /* Top navigation styles */
+  .top-nav {
+    background-color: #1e1e1e;
+    padding: 10px 0;
+  }
+  
+  /* Logo container styles */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .logo-container img {
+    height: 60px;
+    margin-right: 10px;
+  }
+  
+  /* Main container styles */
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  /* Welcome box styles */
+  .welcome-box {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Wallet address styles */
+  #account-address {
+    font-size: 14px;
+    font-weight: 300;
+    color: #aaa;
+    cursor: pointer;
+  }
+  
+  .copy-icon {
+    margin-left: 5px;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .copy-message {
+    position: absolute;
+    display: none;
+    font-size: 14px; /* Match font size with wallet address */
+    color: #aaa; /* Match color with wallet address */
+    background-color: #1e1e1e;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  #account-address:hover + .copy-icon + .copy-message,
+  .copy-icon:hover + .copy-message {
+    display: inline-block;
+  }
+  
+  /* Button container styles */
+  .button-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    padding: 0 20px; /* Adjust container padding */
+  }
+  
+  .large-button, .round-button {
+    padding: 10px 0;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid transparent; /* Transparent border */
+    border-bottom-color: #1e1e1e; /* Bottom border color */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: border-bottom-color 0.3s, color 0.3s;
+    width: 100%; /* Adjust button width */
+  }
+  
+  /* Update for round buttons */
+  .round-button {
+    padding: 10px 20px; /* Adjust padding for round buttons */
+  }
+  
+  .large-button:hover, .round-button:hover {
+    border-bottom-color: #007bff; /* Highlight bottom border on hover */
+    color: #007bff;
+  }
+  
+  /* Options and payment history section styles */
+  .custom-section {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+  }
+  
+  .options-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  /* Payment history styles */
+  .payment-history {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  /* Dropdown menu styles */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #1e1e1e;
+    min-width: 160px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: none;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  .dropdown-item {
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #007bff;
+  }

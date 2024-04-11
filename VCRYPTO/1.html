@@ -1,0 +1,105 @@
+<!-- import.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags, title, CSS links -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.container {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Import Wallet</h1>
+        <form id="importForm">
+            <label for="privateKey">Enter Private Key:</label>
+            <input type="text" id="privateKey" name="privateKey" required>
+            <button type="submit">Import Wallet</button>
+        </form>
+    </div>
+    <script src="import.js">
+        // import.js
+document.addEventListener('DOMContentLoaded', function() {
+    const importForm = document.getElementById('importForm');
+    
+    importForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        const privateKey = document.getElementById('privateKey').value;
+        
+        // Validate private key format (this is just a placeholder)
+        if (!isValidPrivateKey(privateKey)) {
+            alert("Invalid private key format");
+            return;
+        }
+        
+        // Perform wallet import logic
+        importWallet(privateKey);
+    });
+});
+
+function isValidPrivateKey(privateKey) {
+    // Add logic to validate private key format
+    // For example, check length and characters
+    return true; // Placeholder, replace with actual validation
+}
+
+function importWallet(privateKey) {
+    // Perform wallet import logic here
+    // This is just a placeholder function
+    console.log("Importing wallet with private key:", privateKey);
+    // Add logic to import wallet using the private key
+}
+    </script>
+</body>
+</html>
