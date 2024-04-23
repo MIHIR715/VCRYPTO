@@ -201,6 +201,26 @@
             padding: 5px 0;
             color: #fff;
         }
+
+        /* Add new styles for admin token balance */
+        #admin-token-balance {
+            font-size: 18px;
+        }
+
+        /* CSS for send button */
+        #send-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -212,18 +232,15 @@
         <!-- Admin card -->
         <div class="card admin-card">
             <h2>Hello Admin_name</h2>
-            <p>Admin Account Address: [Admin Account Address]</p>
-            <p>Total Tokens: [Total Tokens]</p>
-            <p>Overall Achievements: [Overall Achievements]</p>
+            <!-- Assign admin account address -->
+            <p>Admin Account Address: 0x1A2B3C4D5E6F7A8B9C</p>
+            <!-- Display admin's token balance here -->
+            <p>Total Tokens: <span id="admin-token-balance">100000</span></p>
+            <!-- Display admin's achievements here -->
+            <p>Overall Achievements: <span id="admin-achievements">0</span></p>
         </div>
 
-        <!-- Total tokens and overall achievements card -->
-        <div class="card achievements-card">
-            <h2>Total Tokens</h2>
-            <p>[Total Tokens]</p>
-            <h2>Overall Achievements</h2>
-            <p>[Overall Achievements]</p>
-        </div>
+
     </div>
 
     <!-- Navbar -->
@@ -244,10 +261,7 @@
                 <option value="2">State Level</option>
                 <option value="3">National Level Sports</option>
             </select><br>
-            <select class="dropdown-select" id="achievement-calculation">
-                <option value="1.25">Participation</option>
-                <option value="2">Achievements</option>
-            </select><br>
+            <!-- Removed achievement calculation dropdown -->
             <select class="dropdown-select" id="category-calculation">
                 <option value="3">Sports</option>
                 <option value="5">Hackathons</option>
@@ -298,7 +312,6 @@
             // Submit event listener for Send Token form
             const sendTokenForm = document.getElementById("send-token-form");
             const tokenCalculationSelect = document.getElementById("token-calculation");
-            const achievementCalculationSelect = document.getElementById("achievement-calculation");
             const categoryCalculationSelect = document.getElementById("category-calculation");
             const tokenResultParagraph = document.getElementById("token-result");
             const sendButton = document.getElementById("send-button");
@@ -306,19 +319,24 @@
             sendTokenForm.addEventListener("submit", function(e) {
                 e.preventDefault();
                 const x = parseFloat(tokenCalculationSelect.value);
-                const y = parseFloat(achievementCalculationSelect.value);
                 const z = parseFloat(categoryCalculationSelect.value);
-                const result = x * y * z;
+                const result = x * z;
                 tokenResultParagraph.textContent = "Calculated Tokens: " + result.toFixed(2);
 
                 // Show the send button
                 sendButton.style.display = "block";
 
+                // Update admin's token balance
+                updateAdminTokenBalance(-result);
+
+                // Increment admin's achievements by 1 for each transaction
+                updateAdminAchievements(1);
+
                 // Dummy code to add payment to activity history
                 const address = sendTokenForm.querySelector('input[name="address"]').value;
                 const now = new Date();
                 const time = now.toLocaleString();
-                const paymentDetails = `Admin_name sent tokens to ${address} at ${time}. Tokens: ${result.toFixed(2)}, Achievement: ${y}, Category: ${z}`;
+                const paymentDetails = `Admin_name sent tokens to ${address} at ${time}. Tokens: ${result.toFixed(2)}, Category: ${z}`;
                 updateActivityHistory(paymentDetails);
             });
 
@@ -328,20 +346,42 @@
                 // After sending, display a notification
                 alert("Tokens sent successfully!");
             });
-        });
 
-        // Function to update activity history with payment
-        function updateActivityHistory(paymentDetails) {
-            const paymentHistoryDiv = document.getElementById("payment-history");
-            const paymentItem = document.createElement("div");
-            paymentItem.classList.add("payment-item");
-            paymentItem.innerHTML = `
-                <div class="payment-content">
-                    <p>${paymentDetails}</p>
-                </div>
-            `;
-            paymentHistoryDiv.appendChild(paymentItem);
-        }
+            // Function to update activity history with payment
+            function updateActivityHistory(paymentDetails) {
+                const paymentHistoryDiv = document.getElementById("payment-history");
+                const paymentItem = document.createElement("div");
+                paymentItem.classList.add("payment-item");
+                paymentItem.innerHTML = `
+                    <div class="payment-content">
+                        <p>${paymentDetails}</p>
+                    </div>
+                `;
+                paymentHistoryDiv.appendChild(paymentItem);
+            }
+
+            // Define a variable to store the admin's token balance
+            let adminTokenBalance = 100000;
+
+            // Function to update the admin's token balance in the UI
+            function displayAdminTokenBalance() {
+                document.getElementById("admin-token-balance").textContent = adminTokenBalance;
+            }
+
+            // Function to update admin's token balance
+            function updateAdminTokenBalance(amount) {
+                adminTokenBalance += amount;
+                displayAdminTokenBalance();
+            }
+
+            // Function to update admin's achievements
+            function updateAdminAchievements(achievementIncrement) {
+                const adminAchievementsElement = document.getElementById("admin-achievements");
+                let adminAchievements = parseInt(adminAchievementsElement.textContent);
+                adminAchievements += achievementIncrement;
+                adminAchievementsElement.textContent = adminAchievements;
+            }
+        });
     </script>
 </body>
 </html>
